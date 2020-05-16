@@ -1,17 +1,38 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
+<ion-toolbar>
+  <ion-title>
+    Photo Gallery
+  </ion-title>
+</ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-col size="12"
+      *ngFor="let photo of photoService.photos; index as position">
+      <ion-card>
+    <ion-img src="{{ photo.base64 ? photo.base64 : photo.webviewPath }}">
+
+    </ion-img>
+    <ion-item class="ion-activated">
+      <ion-icon name="ribbon" slot="start"></ion-icon>
+      <ion-label>Label:</ion-label>
+    </ion-item>
+
+    <ion-item class="ion-activated">
+      <ion-icon name="school" slot="start"></ion-icon>
+      <ion-label>confidence</ion-label>
+    </ion-item>
+  <ion-button expand="block">image Classifier</ion-button>
+  　</ion-card>
+  </ion-col>
+
+
+
+
+<ion-fab vertical="bottom" horizontal="center" slot="fixed">
+  <ion-fab-button (click)="photoService.addNewToGallery()">
+    <ion-icon name="camera"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
 </ion-content>
